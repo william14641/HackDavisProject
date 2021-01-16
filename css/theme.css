@@ -91,6 +91,10 @@ a {
   background-color: rgbA(0, 75, 160, 0.05);
 }
 
+.upload {
+  color: grey;
+}
+
 span:hover {
   background-color: rgba(79, 10, 58, 0.2);
 }

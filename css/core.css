@@ -11,6 +11,20 @@ nav ul {
   padding: 0;
 }
 
+#dropContainer {
+    height:22rem;
+    width:40rem;
+    margin:auto;
+    border:2px dashed grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload {
+  font-size: 6rem;
+}
+
 .left {
   float: left;
 }
