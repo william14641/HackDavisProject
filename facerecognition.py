@@ -4,7 +4,9 @@ import cv2
 import numpy as np
 import urllib
 import urllib.request
-
+import tempfile
+from skimage import io
+import os
 
 response = requests.get('https://api.fbi.gov/wanted/v1/list')
 data = json.loads(response.content)
@@ -40,12 +42,18 @@ def url_to_image(url):
 	# return the image
 	return image
 
+images=[]
 for url in urls:
-	url_to_image(url)
+	images.append(url_to_image(url))
 
+def save_images_in_tempdir(images):
+	with tempfile.TemporaryDirectory() as temp_dir:
+		for i in range(len(images)):
+			io.imsave(os.path.join(temp_dir, 'missing.jpg'), images[i])
+			print('ok')
 
+save_images_in_tempdir(images)
 
-        
 
 
 
