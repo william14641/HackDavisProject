@@ -4,8 +4,6 @@ nav {
   width: auto;
   overflow: hidden;
   font-size: 1.25em;
-  padding-right: 10%;
-  padding-left: 10%;
 }
 
 nav ul {
@@ -77,19 +75,48 @@ img {
   max-width: 100%;
 }
 
-.event {
-  margin-bottom: 5rem;
-}
-
 /*Set your custom screen width here replacing 700*/
 
 @media (max-width: 700px) {
   .landing-title {
     font-size: 6rem;
   }
+}
 
-  .landing {
-    height: 20rem;
-    padding: 3rem;
-  }
+.centered {
+  text-align: center;
+}
+
+
+.serif {
+  font-family: "Helvetica";
+}
+
+.light {
+  opacity: 0.5;
+}
+
+footer {
+
+  margin: 0;
+  padding: 1em;
+}
+
+
+ul.nobullets {
+  list-style-type: none;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.sub-section {
+  border-radius: 0.25em;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+h5 {
+  text-align: center;
 }
