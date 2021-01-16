@@ -1,0 +1,131 @@
+/*Theme.CSS is for theming only. You should be able to safely change any and 
+all of these settings for any website that you make. Keep this file as simple
+as possible!*/
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+/*Navigation*/
+nav.primary {
+  /*Primary*/
+  background: rgb(93, 16, 73);
+}
+
+nav.primary a {
+  color: rgb(190, 143, 180);
+}
+
+nav.primary a.selected{
+  color: white;
+}
+
+nav.primary li a:hover {
+  color: white;
+}
+
+nav.primary li.special {
+  /*Dark Primary*/
+  background-color: rgba(79, 10, 100);
+}
+
+
+nav.primary li.special:hover {
+}
+
+nav.primary li.special a {
+  /*Dark Primary*/
+}
+
+
+nav.primary #highlighted {
+  /*background: #63a4ff;*/
+  box-shadow: inset 0px -5px 0px 0px white;
+}
+
+span {
+  background-color: rgba(79, 10, 58, 0.1);
+}
+
+h3 {
+  color: #5D1049;
+}
+
+a.button {
+  border-color: #5D1049;
+  color: #5D1049;
+  font-weight: bolder;
+  border-width: 0.2rem;
+}
+
+
+a.disabled {
+  color: gray;
+  border-color: gray;
+}
+
+/*landing*/
+
+.landing {
+  background-image: url("assets/landing-page.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link {
+  background-color: rgba(79, 10, 58, 0.1);
+  color: #5D1049;
+}
+
+.link:hover {
+  background-color: rgba(79, 10, 58, 0.2);
+  color: #5D1049;
+}
+
+.news {
+  background-color: rgba(79, 10, 58, 0.05);
+}
+
+.login {
+  background-color: rgba(79, 10, 58, 0.05);
+}
+
+span:hover {
+  background-color: rgba(79, 10, 58, 0.2);
+}
+
+p {
+  font-size: 2rem;
+}
+
+.landing-title {
+  font-weight: lighter;
+  color: white;
+  background-color: rgba(79, 10, 58, 0.7);
+}
+
+.officers {
+  background-color: rgba(79, 10, 58, 0.05);
+}
+
+.article {
+  background-color: rgba(79, 10, 58, 0.05);
+}
+
+.question {
+  font-weight: bold;
+}
+
+.event {
+  background-color: rgba(79, 10, 58, 0.05);
+}
+
+button .button {
+  color: #BE8FB4;
+}
