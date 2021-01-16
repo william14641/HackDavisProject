@@ -7,6 +7,7 @@ import urllib.request
 import tempfile
 from skimage import io
 import os
+import face_recognition
 
 response = requests.get('https://api.fbi.gov/wanted/v1/list')
 data = json.loads(response.content)
@@ -46,13 +47,21 @@ images=[]
 for url in urls:
 	images.append(url_to_image(url))
 
-def save_images_in_tempdir(images):
+def save_images_in_tempdir(images, input_image=None):
+	paths = []
 	with tempfile.TemporaryDirectory() as temp_dir:
 		for i in range(len(images)):
 			io.imsave(os.path.join(temp_dir, 'missing.jpg'), images[i])
-			print('ok')
+			paths.append(os.path.join(temp_dir, 'missing.jpg'))
+		if input_image is not None:
+			unknown_image = face_recognition.load_image_file(input_image)
+		read_images = []
+		for path in paths:
+			read_images.append(face_recognition.load_image_file(path))
+	print('done')
 
 save_images_in_tempdir(images)
+
 
 
 
