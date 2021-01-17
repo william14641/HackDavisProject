@@ -48,7 +48,7 @@ for url in urls:
 	images.append(url_to_image(url))
 
 
-def save_images_in_tempdir(images, input_image=None):
+def find_match(input_image=None):
 	paths = []
 	with tempfile.TemporaryDirectory() as temp_dir:
 		for i in range(len(images)):
@@ -70,9 +70,6 @@ def save_images_in_tempdir(images, input_image=None):
 				if face_recognition.compare_faces([face_recognition.face_encodings(read_images[i])[0]], unknown_encoding)[0]:
 					results[i] = True
 	print(results)
-
-
-save_images_in_tempdir(images)
 
 
 
