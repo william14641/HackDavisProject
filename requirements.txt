@@ -43,12 +43,12 @@ PyWavelets==1.1.1
 PyYAML==5.3.1
 QtPy==1.9.0
 requests==2.25.1
-scikit-image==0.17.2
-scipy==1.6.0
+scikit-image==0.18.0rc1
+scipy==1.5.4
 SimpleITK==2.0.2
 six==1.15.0
 soupsieve==2.1
-tifffile==2021.1.14
+tifffile==2020.9.3
 toml==0.10.2
 toolz==0.11.1
 urllib3==1.26.2
