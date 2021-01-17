@@ -109,7 +109,8 @@ def display_similar():
 
 @app.route('/', methods=['POST'])
 def upload_files():
-    uploaded_file = request.files['file']
+	results=None
+	uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     if filename != '':
         file_ext = os.path.splitext(filename)[1]
@@ -120,7 +121,7 @@ def upload_files():
 
         results = find_match(os.path.join(app.config['UPLOAD_PATH'], filename))
         
-    return redirect(url_for('display_similar'))
+    return render_template('similar.html', src=results)
 
 @app.route('/uploads/<filename>')
 def upload(filename):
