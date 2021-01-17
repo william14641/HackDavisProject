@@ -5,8 +5,9 @@ iMissing is a website that is utilized to identify people found in the Kidnappin
 ## Site Layout and Features
 - Responsive site layout, compatible with mobile
 - Supports single file uploads to match to FBI Database
-- ~96% acccuracy in determining missing persons
+- High acccuracy in determining missing persons
 - After uploading image, redirects to FBI Missing Persons poster, which contains further information
+- Compatible with every browser except I10
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
