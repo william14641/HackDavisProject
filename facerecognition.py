@@ -69,8 +69,7 @@ def find_match(input_image=None):
 				known_encodings.append(face_recognition.face_encodings(read_images[i])[0])
 				if face_recognition.compare_faces([face_recognition.face_encodings(read_images[i])[0]], unknown_encoding)[0]:
 					results[i] = True
-	print(results)
-
+	return results
 
 
 
