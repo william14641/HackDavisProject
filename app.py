@@ -10,14 +10,15 @@ import numpy as np
 import urllib
 import urllib.request
 import tempfile
+import face_recognition
 from skimage import io
 import os
-import face_recognition
 
 response = requests.get('https://api.fbi.gov/wanted/v1/list')
 data = json.loads(response.content)
 wanted=[]
 
+print("A")
 page = 1
 
 for i in range(1000):
@@ -27,18 +28,18 @@ for i in range(1000):
 		break
 	wanted.extend(data['items'])
 	page = data['page'] + 1
-
+print("B")
 urls = []
 for item in wanted:
 	if item['subjects'] == ['Kidnappings and Missing Persons']:
 		a=item['images'][0]['original']
 		urls.append(a)
-
+print("C")
 class AppURLopener(urllib.request.FancyURLopener):
     version = "Mozilla/5.0"
-
+print("D")
 opener = AppURLopener()
-
+print("E")
 def url_to_image(url):
 	# download the image, convert it to a NumPy array, and then read
 	# it into OpenCV format
@@ -47,11 +48,11 @@ def url_to_image(url):
 	image = cv2.imdecode(image, cv2.IMREAD_COLOR)
 	# return the image
 	return image
-
+print("F")
 images=[]
 for url in urls:
 	images.append(url_to_image(url))
-
+print("G")
 
 def find_match(input_image=None):
 	paths = []
@@ -79,12 +80,12 @@ def find_match(input_image=None):
 				print(i)
 				return urls[i]
 
-
+print("H")
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
 app.config['UPLOAD_PATH'] = 'uploads'
-
+print("I")
 def validate_image(stream):
     header = stream.read(512)
     stream.seek(0)
@@ -92,11 +93,11 @@ def validate_image(stream):
     if not format:
         return None
     return '.' + (format if format != 'jpeg' else 'jpg')
-
+print("J")
 @app.errorhandler(413)
 def too_large(e):
     return "File is too large", 413
-
+print("K")
 @app.route('/')
 def index():
     files = os.listdir(app.config['UPLOAD_PATH'])
@@ -104,25 +105,29 @@ def index():
 
 @app.route('/similar')
 def display_similar():
-	return render_template('similar.html', src=find_match())
-
-
+    temp = "https://www.fbi.gov/wanted/kidnap/christine-marie-eastin/@@images/image/preview"
+    return temp
+print("L")
 @app.route('/', methods=['POST'])
 def upload_files():
+    print("N")
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
+    print("O")
     if filename != '':
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config['UPLOAD_EXTENSIONS'] or \
                 file_ext != validate_image(uploaded_file.stream):
             return "Invalid image", 400
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
-
+        print("P")
         results = find_match(os.path.join(app.config['UPLOAD_PATH'], filename))
-        
-    return redirect(url_for('display_similar'))
+        print("Q")
+    return render_template('similar.html', src=results)
 
+print("M")
 @app.route('/uploads/<filename>')
 def upload(filename):
+    print("!")
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
