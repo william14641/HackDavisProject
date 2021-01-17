@@ -12,6 +12,3 @@ def upload_file():
     if uploaded_file.filename != '':
         uploaded_file.save(uploaded_file.filename)
     return redirect(url_for('index'))
-
-if __name__ == "__main__":
-    app.run()
