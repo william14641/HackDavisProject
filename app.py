@@ -30,10 +30,13 @@ for i in range(1000):
 	page = data['page'] + 1
 print("B")
 urls = []
+pdfs = []
 for item in wanted:
 	if item['subjects'] == ['Kidnappings and Missing Persons']:
 		a=item['images'][0]['original']
+		b=item['files'][0]['url']
 		urls.append(a)
+		pdfs.append(b)
 print("C")
 class AppURLopener(urllib.request.FancyURLopener):
     version = "Mozilla/5.0"
@@ -71,8 +74,8 @@ def find_match(input_image=None):
 		if len(face_recognition.face_encodings(read_images[i])) >= 1:
 			known_encodings.append(face_recognition.face_encodings(read_images[i])[0])
 			if face_recognition.compare_faces([face_recognition.face_encodings(read_images[i])[0]], unknown_encoding)[0]:
-				return urls[i]
-	return 'https://pbs.twimg.com/profile_images/1035230959371571200/dRIO0Dy-_400x400.jpg'
+				return urls[i], pdfs[i]
+	return 'https://pbs.twimg.com/profile_images/1035230959371571200/dRIO0Dy-_400x400.jpg', 'https://pbs.twimg.com/profile_images/1035230959371571200/dRIO0Dy-_400x400.jpg'
 
 print("H")
 app = Flask(__name__)
@@ -97,10 +100,6 @@ def index():
     files = os.listdir(app.config['UPLOAD_PATH'])
     return render_template('index.html', files=files)
 
-@app.route('/similar')
-def display_similar():
-    temp = "https://www.fbi.gov/wanted/kidnap/christine-marie-eastin/@@images/image/preview"
-    return temp
 print("L")
 @app.route('/', methods=['POST'])
 def upload_files():
@@ -115,8 +114,8 @@ def upload_files():
             return "Invalid image", 400
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         print("P")
-        results = find_match(os.path.join(app.config['UPLOAD_PATH'], filename))
-    return render_template('similar.html', src=results)
+        result_img, result_pdf = find_match(os.path.join(app.config['UPLOAD_PATH'], filename))
+    return redirect(result_pdf)
 
 print("M")
 @app.route('/uploads/<filename>')
