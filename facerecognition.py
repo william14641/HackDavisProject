@@ -47,21 +47,32 @@ images=[]
 for url in urls:
 	images.append(url_to_image(url))
 
+
 def save_images_in_tempdir(images, input_image=None):
 	paths = []
 	with tempfile.TemporaryDirectory() as temp_dir:
 		for i in range(len(images)):
-			io.imsave(os.path.join(temp_dir, 'missing.jpg'), images[i])
-			paths.append(os.path.join(temp_dir, 'missing.jpg'))
-		if input_image is not None:
-			unknown_image = face_recognition.load_image_file(input_image)
+			io.imsave(os.path.join(temp_dir, f'{i}.jpg'.format(i)), images[i])
+			paths.append(os.path.join(temp_dir, f'{i}.jpg'.format(i).format(i)))
+		# loaded image file path for all the "known" images
 		read_images = []
 		for path in paths:
 			read_images.append(face_recognition.load_image_file(path))
-	print('done')
+		if input_image is None:
+			input_image = paths[1] #1 is a random image chosen; input image will be the one user uploads
+		unknown_image = face_recognition.load_image_file(input_image)
+		unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+		known_encodings = []
+		results = [False for i in range(len(read_images))]
+		for i in range(len(read_images)):
+			if len(face_recognition.face_encodings(read_images[i])) >= 1:
+				known_encodings.append(face_recognition.face_encodings(read_images[i])[0])
+				if face_recognition.compare_faces([face_recognition.face_encodings(read_images[i])[0]], unknown_encoding)[0]:
+					results[i] = True
+	print(results)
+
 
 save_images_in_tempdir(images)
-
 
 
 
