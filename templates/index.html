@@ -5,13 +5,12 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 	<title>iMissing</title>
-	<link rel="stylesheet" type="text/css" href="css\theme.css">
-	<link rel="stylesheet" type="text/css" href="css\core.css">
-	<link rel="stylesheet" type="text/css" href="css\normalize.css">
-	<link rel="stylesheet" type="text/css" href="css\skeleton.css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/theme.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/core.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skeleton.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600&display=swap" rel="stylesheet">
-	<script type="text/javascript" src="js/core.js"></script>
-	<script type="text/javascript" src="js/theme.js"></script>
+	<link ... href="{{ url_for('static', filename='css/core.css') }}" />
 	<script src="assets/dropzone-5.7.0/dist/dropzone.js"></script>
 	<script src="https://kit.fontawesome.com/dc362052b9.js" crossorigin="anonymous"></script>
 
@@ -36,9 +35,10 @@
 	<div class="section">
 		<div class="container">
 			<h5>Finding missing people with machine learning.</h5>
-			<div id="dropContainer">
-				<i class="fas fa-file-upload upload"></i>
-			</div>
+				<form method="POST" action="" enctype="multipart/form-data">
+      				<p><input type="file" name="file"></p>
+      				<p><input type="submit" value="Submit"></p>
+    			</form>
 		</div>
 	</div>
 
@@ -47,36 +47,20 @@
 			<h3>Our Impact</h3>
 			<div class="row centered">
 				<div class="four columns">
-					<h1>6</h1>
-					<h6>Conferences per year</h6>
+					<h1>97</h1>
+					<h6>Missing people in our database</h6>
 				</div>
 				<div class="four columns">
-					<h1>40+</h1>
-					<h6>Active Members</h6>
+					<h1>8</h1>
+					<h6>FBI Databases to chose from</h6>
 				</div>
 				<div class="four columns">
-					<h1>133</h1>
-					<h6>Awards since founding</h6>
+					<h1>2021</h1>
+					<h6>Databases are current to our year</h6>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="section">
-		<div class="container">
-			<h1 class="centered light">❝</h1>
-			<h3>Join Model UN. In our world of walls and moats, we need people to help build bridges. </h3>
-			<h5 class="right">Ryan Wu, Alumnus</h5>
-		</div>
-	</div>
-
-	<div class="section shaded">
-		<div class="container centered">
-			<h3>Find us in B211 every other MUNday at Lunch!</h3>
-		</div>
-	</div>
-
-	
 </body>
 
 </html>
