@@ -102,6 +102,11 @@ def index():
     files = os.listdir(app.config['UPLOAD_PATH'])
     return render_template('index.html', files=files)
 
+@app.route('/similar')
+def display_similar():
+	return render_template('similar.html', src=find_match())
+
+
 @app.route('/', methods=['POST'])
 def upload_files():
     uploaded_file = request.files['file']
@@ -115,7 +120,7 @@ def upload_files():
 
         results = find_match(os.path.join(app.config['UPLOAD_PATH'], filename))
         
-    return '', 204
+    return redirect(url_for('display_similar'))
 
 @app.route('/uploads/<filename>')
 def upload(filename):
