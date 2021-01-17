@@ -122,7 +122,6 @@ def upload_files():
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         print("P")
         results = find_match(os.path.join(app.config['UPLOAD_PATH'], filename))
-        print("Q")
     return render_template('similar.html', src=results)
 
 print("M")
