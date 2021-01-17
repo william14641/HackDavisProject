@@ -14,6 +14,8 @@ import face_recognition
 from skimage import io
 import os
 
+app = Flask(__name__)
+
 response = requests.get('https://api.fbi.gov/wanted/v1/list')
 data = json.loads(response.content)
 wanted=[]
@@ -123,3 +125,6 @@ def upload(filename):
     print("!")
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
+if __name__ == '__main__':
+    # Threaded option to enable multiple instances for multiple user access support
+    app.run(threaded=True, port=5000)
