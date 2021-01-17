@@ -74,9 +74,10 @@ def find_match(input_image=None):
 				known_encodings.append(face_recognition.face_encodings(read_images[i])[0])
 				if face_recognition.compare_faces([face_recognition.face_encodings(read_images[i])[0]], unknown_encoding)[0]:
 					results[i] = True
-        for i in range(len(results)):
-            if results[i]:
-                return urls[i]
+		for i in range(len(results)):
+			if results[i]:
+				print(i)
+				return urls[i]
 
 
 app = Flask(__name__)
@@ -119,3 +120,4 @@ def upload_files():
 @app.route('/uploads/<filename>')
 def upload(filename):
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
+
